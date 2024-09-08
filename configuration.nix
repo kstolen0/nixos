@@ -2,12 +2,12 @@
 
 {
   imports = [
-  <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> 
+    <nixos-wsl/modules>
   ./i3.nix
   ];
 
-  # Let demo build as a trusted user.
-nix.settings.trusted-users = [ "demo" ];
+  wsl.enable = true;
+  wsl.defaultUser = "nixos";
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -28,7 +28,7 @@ services.displayManager = {
 time.timeZone = "Australia/Perth";
 
 nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  "discord"
+  # "discord"
 ];
 
 # List packages installed in system profile. To search, run:
@@ -37,7 +37,7 @@ environment.systemPackages = with pkgs; [
   # core packages
   wget vim git gh alacritty stow
   # helpful terminal packages
-  fzf  neofetch nerdfonts
+  fzf  neofetch 
   # editors
   neovim
   # packages for jekyll blog
@@ -45,7 +45,7 @@ environment.systemPackages = with pkgs; [
   # packages for go
   go
   # apps
-  discord ungoogled-chromium
+  ungoogled-chromium
   # random packages
   pipes
 ];
