@@ -3,7 +3,7 @@
 {
   imports = [
   <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> 
-  ./i3.nix
+    ../../modules/i3.nix
   ];
 
   # Let demo build as a trusted user.

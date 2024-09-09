@@ -9,13 +9,22 @@
     let 
       lib = nixpkgs.lib;
     in {
+
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           system = "x86_64-linux";
 	  modules = [
-	    ./configuration.nix
+	    ./hosts/vm-config/configuration.nix
 	  ];
         };
       };
+
+      nixosConfigurations.vm = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/vm-config/configuration.nix
+          ];
+        };
+
     };
 }
