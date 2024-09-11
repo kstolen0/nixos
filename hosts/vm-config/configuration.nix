@@ -4,6 +4,7 @@
   imports = [
   <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> 
     ../../modules/i3.nix
+    ../../modules/update-zen.nix
   ];
 
   # Let demo build as a trusted user.
@@ -37,9 +38,9 @@ environment.systemPackages = with pkgs; [
   # core packages
   wget vim git gh alacritty stow
   # helpful terminal packages
-  fzf  neofetch nerdfonts
+  fzf  neofetch 
   # editors
-  neovim
+  neovim ripgrep unzip nodejs_22
   # packages for jekyll blog
   ruby gcc gnumake jekyll
   # packages for go
@@ -49,6 +50,10 @@ environment.systemPackages = with pkgs; [
   # random packages
   pipes
 ];
+
+fonts.packages = with pkgs; [
+    nerdfonts # consider only importing the fonts I use
+  ];
 
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;

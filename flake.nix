@@ -24,7 +24,6 @@
             ./hosts/vm-config/configuration.nix
           ];
         };
-
     };
     };
 }
