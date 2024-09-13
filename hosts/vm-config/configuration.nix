@@ -25,6 +25,7 @@ services.displayManager = {
   defaultSession = "none+i3";
 };
 
+
 # Set your time zone.
 time.timeZone = "Australia/Perth";
 
@@ -57,5 +58,7 @@ fonts.packages = with pkgs; [
 
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;
+
+  # hardware.pulseaudio.enable = lib.mkForce false;
 
 }
