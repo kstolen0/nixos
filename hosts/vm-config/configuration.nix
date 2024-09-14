@@ -2,9 +2,11 @@
 
 {
   imports = [
-  <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> 
+    <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> 
     ../../modules/i3.nix
     ../../modules/update-zen.nix
+    ../../modules/nvim.nix
+    ../../modules/discord.nix
   ];
 
   # Let demo build as a trusted user.
@@ -29,10 +31,6 @@ services.displayManager = {
 # Set your time zone.
 time.timeZone = "Australia/Perth";
 
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  "discord"
-];
-
 # List packages installed in system profile. To search, run:
 # \$ nix search wget
 environment.systemPackages = with pkgs; [
@@ -41,24 +39,23 @@ environment.systemPackages = with pkgs; [
   # helpful terminal packages
   fzf  neofetch 
   # editors
-  neovim ripgrep unzip nodejs_22
   # packages for jekyll blog
   ruby gcc gnumake jekyll
   # packages for go
   go
   # apps
-  discord ungoogled-chromium
+  ungoogled-chromium
   # random packages
   pipes
 ];
 
 fonts.packages = with pkgs; [
-    nerdfonts # consider only importing the fonts I use
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;
 
-  # hardware.pulseaudio.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = lib.mkForce false;
 
 }

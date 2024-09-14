@@ -1,21 +1,21 @@
-{ config, pkgs, lib, ... }: 
+{ config, pkgs, lib, ... }:
 
 {
 
-services.xserver = {
-  enable = true;
-  desktopManager = {
-    xterm.enable = false;
-    plasma5.enable = lib.mkForce false;
-  };
-  windowManager.i3 = {
+  services.xserver = {
     enable = true;
-    extraPackages = with pkgs; [
-      polybar
-      rofi
-      killall
-    ];
+    desktopManager = {
+      xterm.enable = false;
+      plasma5.enable = lib.mkForce false;
+    };
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        polybar
+        rofi
+        killall
+      ];
+    };
   };
-};
 
 }

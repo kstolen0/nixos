@@ -2,20 +2,21 @@
   description = "test flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
   };
 
-  outputs = {self, nixpkgs, ... }:
-    let 
+  outputs = { self, nixpkgs, ... }:
+    let
       lib = nixpkgs.lib;
-    in {
+    in
+    {
 
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           system = "x86_64-linux";
-	  modules = [
-	    ./hosts/vm-config/configuration.nix
-	  ];
+          modules = [
+            ./hosts/vm-config/configuration.nix
+          ];
         };
 
         vm = lib.nixosSystem {
@@ -24,6 +25,6 @@
             ./hosts/vm-config/configuration.nix
           ];
         };
-    };
+      };
     };
 }

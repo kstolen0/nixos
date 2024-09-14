@@ -1,14 +1,14 @@
-{ config, pkgs, lib, ... }: 
+{ config, pkgs, lib, ... }:
 
 {
 
   systemd.timers."zen" = {
     wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnBootSec = "1h";
-        OnUnitActiveSec = "1h";
-        Unit = "zen.service";
-      };
+    timerConfig = {
+      OnBootSec = "1h";
+      OnUnitActiveSec = "1h";
+      Unit = "zen.service";
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -32,7 +32,7 @@
       tput sgr0
 
       EOF
-      '';
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "demo";
