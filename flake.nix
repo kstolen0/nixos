@@ -15,7 +15,7 @@
         nixos = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./hosts/vm-config/configuration.nix
+            ./hosts/main-config/configuration.nix
           ];
         };
 
