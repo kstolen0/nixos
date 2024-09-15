@@ -7,6 +7,7 @@
     ../../modules/update-zen.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix
+    ../../modules/tmux.nix
   ];
 
   # Let demo build as a trusted user.

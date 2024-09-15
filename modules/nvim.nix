@@ -21,7 +21,9 @@
     gopls
     nixd
     nixpkgs-fmt
+
     lua-language-server
+    stylua
   ];
 
 }
