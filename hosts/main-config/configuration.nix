@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nvidia.nix
     ../../modules/i3.nix
     ../../modules/update-zen.nix
     ../../modules/nvim.nix
@@ -10,7 +11,12 @@
     ../../modules/tmux.nix
   ];
 
-  # Let demo build as a trusted user.
+boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;
+
+networking.hostName = "nixos";
+networking.networkmanager.enable = true;
+
 nix.settings.trusted-users = [ "kristian" ];
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -31,6 +37,42 @@ services.displayManager = {
 
 # Set your time zone.
 time.timeZone = "Australia/Perth";
+
+i18n.defaultLocale = "en_AU.UTF-8";
+i18n.extraLocaleSettings = {
+  LC_ADDRESS = "en_AU.UTF-8";
+  LC_IDENTIFICATION = "en_AU.UTF-8";
+  LC_MEASUREMENT = "en_AU.UTF-8";
+  LC_MONETARY = "en_AU.UTF-8";
+  LC_NAME = "en_AU.UTF-8";
+  LC_NUMERIC = "en_AU.UTF-8";
+  LC_PAPER = "en_AU.UTF-8";
+  LC_TELEPHONE = "en_AU.UTF-8";
+  LC_TIME = "en_AU.UTF-8";
+};
+
+services.printing.enable = true;
+
+hardware.pulseaudio.enable = false;
+security.rtkit.enable = true;
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+};
+
+users.users.kristian = {
+  isNormalUser = true;
+  description = "Kristian Stolen";
+  extraGroups = ["networkmanager" "wheel" ];
+  packages = with pkgs; [
+    # kdePackages.kate
+  ];
+};
+
+programs.firefox.enable = true;
+
 
 # List packages installed in system profile. To search, run:
 # \$ nix search wget
@@ -54,7 +96,7 @@ fonts.packages = with pkgs; [
 
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;
-
-  # hardware.pulseaudio.enable = lib.mkForce false;
+  
+  nixpkgs.config.allowUnfree = true;
 
 }
