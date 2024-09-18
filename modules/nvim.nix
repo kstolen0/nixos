@@ -5,6 +5,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
   environment.systemPackages = with pkgs; [
@@ -21,6 +22,7 @@
     gopls
     nixd
     nixpkgs-fmt
+    terraform-ls
 
     lua-language-server
     stylua

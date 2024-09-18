@@ -35,7 +35,7 @@
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "demo";
+      User = "kristian";
     };
   };
 }

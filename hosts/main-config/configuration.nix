@@ -5,14 +5,27 @@
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
     ../../modules/i3.nix
+    # ../../modules/hyprland.nix
     ../../modules/update-zen.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix
     ../../modules/tmux.nix
+    ../../modules/docker.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      efiSupport = true;
+      device = "nodev";
+      configurationLimit = 5;
+      useOSProber = true;
+    };
+
+  };
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -20,15 +33,6 @@
   nix.settings.trusted-users = [ "kristian" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Mount a VirtualBox shared folder.
-  # This is configurable in the VirtualBox menu at
-  # Machine / Settings / Shared Folders.
-  # fileSystems."/mnt" = {
-  #   fsType = "vboxsf";
-  #   device = "nameofdevicetomount";
-  #   options = [ "rw" ];
-  # };
 
   services.displayManager = {
     defaultSession = "none+i3";
@@ -78,7 +82,7 @@
     ];
   };
 
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
 
   # List packages installed in system profile. To search, run:
@@ -102,6 +106,9 @@
     jekyll
     # packages for go
     go
+    # cloud development
+    awscli2
+    terraform
     # apps
     brave
     # random
