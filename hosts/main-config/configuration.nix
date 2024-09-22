@@ -6,6 +6,7 @@
     ../../modules/nvidia.nix
     ../../modules/i3.nix
     # ../../modules/hyprland.nix
+    ../../modules/zsa.nix
     ../../modules/update-zen.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix
@@ -38,6 +39,25 @@
     defaultSession = "none+i3";
   };
 
+  fileSystems."/mnt/newgames" = {
+    device = "/dev/disk/by-uuid/9ABA7BD5BA7BABFF";
+    fsType = "ntfs";
+    options = [
+      "users"
+      "nofail"
+    ];
+  };
+
+
+  fileSystems."/mnt/gamesandotherstuff" = {
+    device = "/dev/disk/by-uuid/BE8A43638A4316F5";
+    fsType = "ntfs";
+    options = [
+      "users"
+      "nofail"
+    ];
+  };
+
 
   # Set your time zone.
   time.timeZone = "Australia/Perth";
@@ -64,6 +84,7 @@
   };
   nixpkgs.config.pulseaudio = true;
 
+
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -76,7 +97,7 @@
   users.users.kristian = {
     isNormalUser = true;
     description = "Kristian Stolen";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
     packages = with pkgs; [
       # kdePackages.kate
     ];
@@ -95,9 +116,11 @@
     gh
     alacritty
     stow
+    keepassxc
     # helpful terminal packages
     fzf
     neofetch
+    yazi
     # editors
     # packages for jekyll blog
     ruby
@@ -120,7 +143,7 @@
   ];
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = false;
 
   nixpkgs.config.allowUnfree = true;
 
