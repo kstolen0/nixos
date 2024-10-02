@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/retroarch.nix
     ../../modules/nvidia.nix
     ../../modules/i3.nix
     # ../../modules/hyprland.nix
@@ -117,6 +118,7 @@
     alacritty
     stow
     keepassxc
+    kdePackages.okular
     # helpful terminal packages
     fzf
     neofetch
