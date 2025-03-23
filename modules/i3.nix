@@ -1,12 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-
   services.xserver = {
     enable = true;
     desktopManager = {
       xterm.enable = false;
-      plasma5.enable = lib.mkForce false;
+      plasma5.enable = true;
     };
     windowManager.i3 = {
       enable = true;
@@ -17,5 +16,7 @@
       ];
     };
   };
-
+  services.displayManager = {
+    sddm.enable = true;
+  };
 }

@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/retroarch.nix
+    # ../../modules/retroarch.nix
     ../../modules/nvidia.nix
     ../../modules/i3.nix
     # ../../modules/hyprland.nix
@@ -13,6 +13,7 @@
     ../../modules/discord.nix
     ../../modules/tmux.nix
     ../../modules/docker.nix
+    ../../modules/godot.nix
   ];
 
   boot.loader = {
@@ -112,8 +113,11 @@
   environment.systemPackages = with pkgs; [
     # core packages
     wget
+    dig
     vim
     git
+    zip
+    unzip
     gh
     alacritty
     stow
@@ -136,17 +140,20 @@
     terraform
     # apps
     brave
+    spotify
     # random
     pipes
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
   ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = false;
 
   nixpkgs.config.allowUnfree = true;
+
+  system.stateVersion = "25.05";
 
 }

@@ -13,7 +13,7 @@
     # plugin deps
     ripgrep
     unzip
-    nodejs_22
+    nodejs_23
     lua54Packages.luarocks
     lua
     xclip
@@ -23,6 +23,7 @@
     nixd
     nixpkgs-fmt
     terraform-ls
+    yaml-language-server
 
     lua-language-server
     stylua
