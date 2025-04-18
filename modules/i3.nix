@@ -4,19 +4,18 @@
   services.desktopManager.plasma6.enable = true;
   services.xserver = {
     enable = true;
-    desktopManager = {
-      xterm.enable = false;
-    };
+    desktopManager = { xterm.enable = false; };
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
         polybar
         rofi
         killall
+        nitrogen
+        flameshot
+        dunst
       ];
     };
   };
-  services.displayManager = {
-    sddm.wayland.enable = true;
-  };
+  services.displayManager = { sddm.wayland.enable = true; };
 }

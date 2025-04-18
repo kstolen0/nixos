@@ -21,6 +21,7 @@
     gopls
     nixd
     nixpkgs-fmt
+    nixfmt
     terraform-ls
     yaml-language-server
 

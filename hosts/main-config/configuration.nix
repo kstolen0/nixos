@@ -9,6 +9,7 @@
     # ../../modules/hyprland.nix
     ../../modules/zsa.nix
     ../../modules/update-zen.nix
+    ../../modules/wallpapers.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix
     ../../modules/tmux.nix
@@ -37,29 +38,19 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.displayManager = {
-    defaultSession = "none+i3";
-  };
+  services.displayManager = { defaultSession = "none+i3"; };
 
   fileSystems."/mnt/newgames" = {
     device = "/dev/disk/by-uuid/9ABA7BD5BA7BABFF";
     fsType = "ntfs";
-    options = [
-      "users"
-      "nofail"
-    ];
+    options = [ "users" "nofail" ];
   };
-
 
   fileSystems."/mnt/gamesandotherstuff" = {
     device = "/dev/disk/by-uuid/BE8A43638A4316F5";
     fsType = "ntfs";
-    options = [
-      "users"
-      "nofail"
-    ];
+    options = [ "users" "nofail" ];
   };
-
 
   # Set your time zone.
   time.timeZone = "Australia/Perth";
@@ -86,7 +77,6 @@
   };
   nixpkgs.config.pulseaudio = true;
 
-
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -100,13 +90,13 @@
     isNormalUser = true;
     description = "Kristian Stolen";
     extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
-    packages = with pkgs; [
-      # kdePackages.kate
-    ];
+    packages = with pkgs;
+      [
+        # kdePackages.kate
+      ];
   };
 
   # programs.firefox.enable = true;
-
 
   # List packages installed in system profile. To search, run:
   # \$ nix search wget
@@ -145,9 +135,7 @@
     pipes
   ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = false;
