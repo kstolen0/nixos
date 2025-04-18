@@ -8,13 +8,18 @@
     ../../modules/i3.nix
     # ../../modules/hyprland.nix
     ../../modules/zsa.nix
-    ../../modules/update-zen.nix
-    ../../modules/wallpapers.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix
     ../../modules/tmux.nix
     ../../modules/docker.nix
     ../../modules/godot.nix
+
+    # timers
+    ../../modules/update-zen.nix
+    ../../modules/wallpapers.nix
+
+    # utils
+    ../../modules/gc.nix
   ];
 
   boot.loader = {
@@ -90,10 +95,7 @@
     isNormalUser = true;
     description = "Kristian Stolen";
     extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
-    packages = with pkgs;
-      [
-        # kdePackages.kate
-      ];
+    packages = with pkgs; [ ];
   };
 
   # programs.firefox.enable = true;
@@ -143,5 +145,4 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.05";
-
 }
