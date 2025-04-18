@@ -5,8 +5,8 @@
 
       export DISPLAY=":0.0"
 
-      /run/current-system/sw/bin/nitrogen --set-auto  --random /home/kristian/Pictures/desktop-2025/ --head=0
-      /run/current-system/sw/bin/nitrogen --set-auto  --random /home/kristian/Pictures/desktop-2025/ --head=1
+      /run/current-system/sw/bin/nitrogen --set-auto  --random /home/kristian/Pictures/desktop-2025/ --head=0 --save
+      /run/current-system/sw/bin/nitrogen --set-auto  --random /home/kristian/Pictures/desktop-2025/ --head=1 --save
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -17,7 +17,7 @@
   systemd.timers."wallpapers" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnBootSec = "10m";
+      OnStartupSec = "10m";
       OnUnitActiveSec = "10m";
       Unit = "wallpapers.service";
     };
