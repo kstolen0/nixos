@@ -7,6 +7,7 @@
     ../../modules/nvidia.nix
     ../../modules/i3.nix
     # ../../modules/hyprland.nix
+    # ../../modules/keyboard.nix
     ../../modules/zsa.nix
     ../../modules/nvim.nix
     ../../modules/discord.nix

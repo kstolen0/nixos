@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+
   services.desktopManager.plasma6.enable = true;
   services.xserver = {
     enable = true;
@@ -16,6 +17,10 @@
         dunst
       ];
     };
+
+    # xkb.layout = "us";
+    # xkbVariant = "workman-p";
+    # xkbOptions = "caps:backspace";
   };
   services.displayManager = { sddm.wayland.enable = true; };
 }
