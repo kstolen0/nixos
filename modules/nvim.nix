@@ -12,7 +12,7 @@
     # plugin deps
     ripgrep
     unzip
-    nodejs_23
+    nodejs_22
     lua54Packages.luarocks
     lua
     xclip

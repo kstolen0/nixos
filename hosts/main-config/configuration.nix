@@ -122,7 +122,7 @@
     yazi
     # editors
     # packages for jekyll blog
-    ruby_3_2
+    ruby_3_4
     gcc
     gnumake
     jekyll
